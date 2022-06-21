@@ -10,7 +10,8 @@ class particularHouse extends StatelessWidget {
   particularHouse({required this.houseData, required this.houseName});
   @override
   Widget build(BuildContext context) {
-    var item = houseData.data as List<characterDataModel>;
+    // var item = houseData.data as List<characterDataModel>;
+    print(" housedata $houseData");
 
     return Scaffold(
         appBar: AppBar(
@@ -19,17 +20,25 @@ class particularHouse extends StatelessWidget {
         ),
         body: GridView.builder(
           gridDelegate:
-              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-          itemCount: 2,
+              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,childAspectRatio: 1/2,mainAxisSpacing: 10,crossAxisSpacing: 5),
+          itemCount: houseData.length,
           itemBuilder: (context, i) {
-            print(item[i].house);
-            return item[i].house!=houseName?SizedBox():GridTile(
-                child: Container(
-                    color: Colors.amber,
-                    child: Image.network(
-                      item[i].image.toString(),
-                      fit: BoxFit.fill,
-                    )));
+            print(houseData[i].house);
+            return GridTile(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                                    height: 270,
+                                    width: 130,
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.all(Radius.circular(12)),
+                                        image: DecorationImage(
+                                            image: NetworkImage(
+                                                houseData[i].image.toString()),
+                                            fit: BoxFit.fill)),
+                                  ),
+                ));
           },
         ));
   }

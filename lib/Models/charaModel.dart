@@ -18,7 +18,8 @@ class characterDataModel {
   String? image;
 
   characterDataModel(
-      {this.name,
+      {
+         this.name,
       this.species,
       this.gender,
       this.house,
