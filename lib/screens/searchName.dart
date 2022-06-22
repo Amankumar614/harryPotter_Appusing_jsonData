@@ -18,8 +18,8 @@ class _SearchBarState extends State<SearchBar> {
   late List<dynamic> s2List=sList;
   List suggestion=[];
   searchCharacterByName(String query) {
-    suggestion = sList.where((query) {
-      final name = query.name.toLowerCase();
+    suggestion = sList.where((Name) {
+      final name = Name.name.toLowerCase();
       final input = query.toLowerCase();
       return name.contains(input);
     }).toList();
