@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:harrypotter/Models/charaModel.dart';
-import 'package:harrypotter/screens/gryffindorsList.dart';
-import 'package:harrypotter/screens/homeScreen.dart';
+import 'package:harrypotter/screens/AllList.dart/gryffindorsList.dart';
+import 'package:harrypotter/widgets/homeScreen.dart';
 import 'package:flutter/services.dart' as rootBundle;
 
 void main(){

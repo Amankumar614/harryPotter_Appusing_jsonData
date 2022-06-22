@@ -1,33 +1,37 @@
-// import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 import '../Models/charaModel.dart';
 
-class particularHouse extends StatelessWidget {
+
+class particularHouse extends StatefulWidget {
   final houseData;
   final houseName;
   particularHouse({required this.houseData, required this.houseName});
+
+  @override
+  State<particularHouse> createState() => _particularHouseState();
+}
+
+class _particularHouseState extends State<particularHouse> {
   @override
   Widget build(BuildContext context) {
-    // var item = houseData.data as List<characterDataModel>;
-    print(" housedata $houseData");
-
+  late var item = widget.houseData.data as AsyncSnapshot<List<characterDataModel>>;
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text(houseName),
+          title: Text(widget.houseName),
         ),
         body: GridView.builder(
           gridDelegate:
-              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,childAspectRatio: 1/2,mainAxisSpacing: 10,crossAxisSpacing: 5),
-          itemCount: houseData.length,
+              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,childAspectRatio: 1/1.7,mainAxisSpacing: 10,crossAxisSpacing: 5),
+          itemCount: widget.houseData.length,
           itemBuilder: (context, i) {
-            print(houseData[i].house);
+            print(widget.houseData[i].house);
             return GridTile(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
+                    child: Align(alignment: Alignment.bottomCenter,child: Text(widget.houseData[i].name,style: TextStyle(color: Colors.white,backgroundColor: Colors.black45),),),
                                     height: 270,
                                     width: 130,
                                     decoration: BoxDecoration(
@@ -35,7 +39,7 @@ class particularHouse extends StatelessWidget {
                                             BorderRadius.all(Radius.circular(12)),
                                         image: DecorationImage(
                                             image: NetworkImage(
-                                                houseData[i].image.toString()),
+                                                widget.houseData[i].image.toString()),
                                             fit: BoxFit.fill)),
                                   ),
                 ));

@@ -17,35 +17,26 @@ class _gryffindorsState extends State<gryffindors> {
   late var item = widget.data.data as List<characterDataModel>;
   late List<dynamic> filterhouse = item;
 
-  searchCharacterByName(String query) {
-    print("aman1");
+  searchCharacterByGryffindor(String query) {
+    
       final suggestion = item.where((book) {
         final name = book.house.toString();
         final input = query;
         return name.contains(input);
       }).toList();
       setState(() {
-        print("enter in the house");
         filterhouse = suggestion;
-        print("amanaman ${filterhouse[0].name}");
+
       });
     }
     @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    searchCharacterByName("Gryffindor");
+    searchCharacterByGryffindor("Gryffindor");
   }
 
   @override
   Widget build(BuildContext context) {
-    print("im aman");
-
-    // var item = widget.data.data as List<characterDataModel>;
-    // late  List<dynamic> filterhouse = item;
-
-    
-
     return Scaffold(
         body: Column(
           children: [
@@ -93,6 +84,7 @@ class _gryffindorsState extends State<gryffindors> {
                                     height: 270,
                                     width: 130,
                                     decoration: BoxDecoration(
+                                      color: Colors.grey,
                                         borderRadius:
                                             BorderRadius.all(Radius.circular(12)),
                                         image: DecorationImage(

@@ -2,12 +2,12 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:harrypotter/screens/HufflepuffList.dart';
-import 'package:harrypotter/screens/RavenclawList.dart';
-import 'package:harrypotter/screens/SlytherinList.dart';
-import 'package:harrypotter/screens/gryffindorsList.dart';
+import 'package:harrypotter/screens/AllList.dart/HufflepuffList.dart';
+import 'package:harrypotter/screens/AllList.dart/RavenclawList.dart';
+import 'package:harrypotter/screens/AllList.dart/SlytherinList.dart';
+import 'package:harrypotter/screens/AllList.dart/gryffindorsList.dart';
 import 'package:flutter/services.dart' as rootBundle;
-import 'package:harrypotter/screens/jsonHasData.dart';
+import 'package:harrypotter/widgets/jsonHasData.dart';
 import 'package:harrypotter/screens/particuarHouse.dart';
 import '../Models/charaModel.dart';
 
