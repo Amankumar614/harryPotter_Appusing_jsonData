@@ -34,6 +34,7 @@ class _SearchBarState extends State<SearchBar> {
 }
 
 class NameSearch extends SearchDelegate<characterDataModel> {
+  
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [IconButton(onPressed: ()=>query="", icon: Icon(Icons.clear))];
@@ -58,7 +59,7 @@ class NameSearch extends SearchDelegate<characterDataModel> {
         : amanList.where((element) => element.name.toLowerCase().startsWith(query.toLowerCase())).toList();
     return listItem.isEmpty
         ? Center(
-            child: Text("No Data"),
+            child: Text("No Data Found!"),
           )
         : ListView.builder(
             itemCount: listItem.length,

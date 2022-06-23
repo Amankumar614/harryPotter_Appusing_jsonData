@@ -27,7 +27,7 @@ class allhouse extends StatelessWidget {
                   houseName: "Gryffindor",
                 ));
               },
-              child: box("https://1000logos.net/wp-content/uploads/2021/11/Gryffindor-Logo.png",Colors.red)),
+              child: box("https://1000logos.net/wp-content/uploads/2021/11/Gryffindor-Logo.png",Colors.red,"Gryffindor")),
           InkWell(
               onTap: () {
                 Get.to(houses(
@@ -35,7 +35,7 @@ class allhouse extends StatelessWidget {
                   houseName: "Slytherin",
                 ));
               },
-              child: box("https://static.wikia.nocookie.net/harrypotter/images/0/00/Slytherin_ClearBG.png/revision/latest?cb=20161020182557",Colors.green)),
+              child: box("https://static.wikia.nocookie.net/harrypotter/images/0/00/Slytherin_ClearBG.png/revision/latest?cb=20161020182557",Colors.green,"Slytherin")),
           InkWell(
               onTap: () {
                 Get.to(houses(
@@ -43,7 +43,7 @@ class allhouse extends StatelessWidget {
                   houseName: "Hufflepuff",
                 ));
               },
-              child: box("https://static.wikia.nocookie.net/harrypotter/images/0/06/Hufflepuff_ClearBG.png/revision/latest?cb=20161020182518",Colors.yellow)),
+              child: box("https://static.wikia.nocookie.net/harrypotter/images/0/06/Hufflepuff_ClearBG.png/revision/latest?cb=20161020182518",Colors.yellow,"Hufflepuff")),
           InkWell(
             onTap: () {
               Get.to(houses(
@@ -51,7 +51,7 @@ class allhouse extends StatelessWidget {
                 houseName: "Ravenclaw",
               ));
             },
-            child: box("https://static.wikia.nocookie.net/harrypotter/images/7/71/Ravenclaw_ClearBG.png/revision/latest?cb=20161020182442",Colors.blue)
+            child: box("https://static.wikia.nocookie.net/harrypotter/images/7/71/Ravenclaw_ClearBG.png/revision/latest?cb=20161020182442",Colors.blue,"Ravenclaw")
           ),
         ],
         padding: EdgeInsets.all(10),
@@ -60,10 +60,15 @@ class allhouse extends StatelessWidget {
     );
   }
 }
-Widget box(String ImageUrl,Color color){
+Widget box(String ImageUrl,Color color,String houseName){
   return Container(
-    child: Image.network(ImageUrl),
-    decoration: BoxDecoration(color: color,borderRadius: BorderRadius.circular(12)),
+    
+    // child: Image.network(ImageUrl,fit: BoxFit.contain,),
+    child: Padding(
+      padding: const EdgeInsets.only(bottom:3.0),
+      child: Align(alignment: Alignment.bottomCenter,child: Text(houseName,style: TextStyle(fontSize: 18,color: Colors.white,backgroundColor: Colors.black45),),),
+    ),
+    decoration: BoxDecoration(color: color,borderRadius: BorderRadius.circular(12),image: DecorationImage(image: NetworkImage(ImageUrl))),
   );
 }
 

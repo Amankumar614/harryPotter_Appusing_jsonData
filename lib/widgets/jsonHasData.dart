@@ -39,7 +39,7 @@ class _jsonHasDataState extends State<jsonHasData> {
                 child: 
                    Container(
                     child: Center(child: ListTile(leading: Icon(Icons.search),title: Text("Search",style: TextStyle(color: Colors.grey),),)),
-                    height: height*0.07,
+                    height: height*0.06,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(color: Colors.grey)),

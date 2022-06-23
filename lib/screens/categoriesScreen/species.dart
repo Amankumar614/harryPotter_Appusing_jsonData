@@ -26,7 +26,7 @@ class _allSpeciesState extends State<allSpecies> {
             mainAxisSpacing: 5,
             mainAxisExtent: 150),
         children: [
-          box(widget.fulldata, "human",Colors.red,"human"),
+          box(widget.fulldata, "Human",Colors.red,"human"),
           box(widget.fulldata, "werewolf",Colors.blue,"Werewolf"),
           box(widget.fulldata, "cat",Colors.yellow,"Cat"),
           box(widget.fulldata,"half-giant",Colors.green,"Half-gaint")
