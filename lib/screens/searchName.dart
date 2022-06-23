@@ -1,169 +1,74 @@
-import 'package:flutter/material.dart';
 
-import '../Models/charaModel.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:harrypotter/Models/charaModel.dart';
+import 'package:harrypotter/screens/characterDescription.dart';
+import 'package:harrypotter/widgets/homeScreen.dart';
+
+var aman;
 
 class SearchBar extends StatefulWidget {
   final wholeList;
   SearchBar({required this.wholeList});
-  // const SearchBar({ Key? key }) : super(key: key);
 
   @override
   State<SearchBar> createState() => _SearchBarState();
 }
 
-TextEditingController searchController = TextEditingController();
+
 
 class _SearchBarState extends State<SearchBar> {
   late List sList = widget.wholeList.data as List<characterDataModel>;
-  late List<dynamic> s2List=sList;
-  List suggestion=[];
-  searchCharacterByName(String query) {
-    suggestion = sList.where((Name) {
-      final name = Name.name.toLowerCase();
-      final input = query.toLowerCase();
-      return name.contains(input);
-    }).toList();
-    setState(() {
-      print("enter in the");
-      s2List = suggestion;
-    });
-  }
+  late List<dynamic> s2List = sList;
 
   @override
   Widget build(BuildContext context) {
-    print("suggestion $suggestion");
+    aman = sList;
     return Scaffold(
-
-      body:
-
-      SafeArea(
-        child: Column(
-
-          children: [
-
-            Container(
-              height: 50,
-              child: TextFormField(
-                controller: searchController,
-                onChanged: searchCharacterByName(searchController.text),
-                // onSubmitted: searchCharacterByName(searchController.text),
-                // onTap: () => setState(() {
-                //   // search=true;
-                //   // print("value of bool $search");
-                // }),
-                decoration: InputDecoration(
-                    prefixIcon: const Icon(
-                      Icons.search,
-                      color: Colors.black,
-                    ),
-                    labelText: 'Enter Name',
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(width: 1, color: Colors.grey),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(width: 1, color: Colors.grey),
-                      borderRadius: BorderRadius.circular(15),
-                    )),
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-                height: 500,
-                child: ListView.builder(
-                  itemBuilder: (context, index) => ListTile(
-                    title: Text(s2List[index].name),
-                  ),
-                  itemCount: s2List.length,
-                )),
-          ],
-        ),
+      appBar: AppBar(
+        title: Text("Search Name"),
+        actions: [IconButton(onPressed: () {showSearch(context: context, delegate: NameSearch());}, icon: Icon(Icons.search))],
       ),
     );
   }
 }
 
-// import 'package:flutter/material.dart';
+class NameSearch extends SearchDelegate<characterDataModel> {
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    return [IconButton(onPressed: ()=>query="", icon: Icon(Icons.clear))];
+  }
 
-// import '../Models/charaModel.dart';
+  @override
+  Widget? buildLeading(BuildContext context) {
+    return IconButton(onPressed: ()=>Get.to(home()), icon: Icon(Icons.arrow_back_outlined));
+  }
 
-// class SearchBar extends StatefulWidget {
-//   final wholeList;
-//   SearchBar({required this.wholeList});
+  @override
+  Widget buildResults(BuildContext context) {
+    return Center(child: Text(query));
+  }
 
-//   @override
-//   State<SearchBar> createState() => _SearchBarState();
-// }
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List amanList = [];
+    amanList = aman;
+    final listItem = query.isEmpty
+        ? amanList
+        : amanList.where((element) => element.name.toLowerCase().startsWith(query.toLowerCase())).toList();
+    return listItem.isEmpty
+        ? Center(
+            child: Text("No Data"),
+          )
+        : ListView.builder(
+            itemCount: listItem.length,
+            itemBuilder: (context, i) {
+              return ListTile(
 
-// TextEditingController searchController = TextEditingController();
-
-// class _SearchBarState extends State<SearchBar> {
-//   bool search = false;
-
-//   late List sList = widget.wholeList.data as List<characterDataModel>;
-//   late List<dynamic> s2List = sList;
-
-//   searchCharacterByName(String query) {
-//     final suggestion = sList.where((book) {
-//       final name = book.name.toLowerCase();
-//       final input = query.toLowerCase();
-
-//       return name.contains(input);
-//     }).toList();
-//     setState(() {
-
-//       // s2List=suggestion;
-//     });
-//   }
-
-//   List AmanList = [];
-//   // var book;
-//   @override
-//   twoFunction(String enterName) {
-//     searchCharacterByName(enterName);
-//     setState(() {
-//       AmanList = s2List;
-//       search = true;
-//     });
-//   }
-
-//   Widget build(BuildContext context) {
-//     return Column(children: [
-//       TextField(
-//         controller: searchController,
-//         onChanged: twoFunction(searchController.text),
-//         onTap: () => setState(() {
-//           search = true;
-//         }),
-//         decoration: InputDecoration(
-//             prefixIcon: const Icon(
-//               Icons.search,
-//               color: Colors.black,
-//             ),
-//             labelText: 'Enter Name',
-//             enabledBorder: OutlineInputBorder(
-//               borderSide: const BorderSide(width: 1, color: Colors.grey),
-//               borderRadius: BorderRadius.circular(15),
-//             ),
-//             focusedBorder: OutlineInputBorder(
-//               borderSide: const BorderSide(width: 1, color: Colors.grey),
-//               borderRadius: BorderRadius.circular(15),
-//             )),
-//       ),
-//       search == true
-//           ? Container(
-//               height: 200,
-//               child: ListView.builder(
-//                 itemCount: AmanList.length,
-//                 itemBuilder: (context, index) {
-//                   var book = s2List[index];
-//                   return ListTile(title: Text(AmanList[index].name));
-//                 },
-//               ),
-//             )
-//           : Container()
-//     ]);
-//   }
-// }
+                onTap: ()=>Get.to(characterDescription(characterDetails: listItem[i])),
+                title: Text(listItem[i].name),
+              );
+            },
+          );
+  }
+}

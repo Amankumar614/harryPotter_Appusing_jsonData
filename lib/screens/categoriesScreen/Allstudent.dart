@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:harrypotter/screens/characterDescription.dart';
 
-import '../Models/charaModel.dart';
+import '../../Models/charaModel.dart';
 
 class allStudent extends StatefulWidget {
   // const allStudent({ Key? key }) : super(key: key);
@@ -48,8 +48,7 @@ class aAllStudentState extends State<allStudent> {
                   padding: const EdgeInsets.all(8.0),
                   child: InkWell(onTap: ()=> Get.to(characterDescription(characterDetails: filterhouse[i])),
                     child: Container(
-                                      height: 270,
-                                      width: 130,
+                                     
                                       child: Align(alignment:Alignment.bottomCenter,child: Text(filterhouse[i].name,style: TextStyle(color: Colors.white,backgroundColor: Colors.black45),)),
                                       decoration: BoxDecoration(
                                           borderRadius:

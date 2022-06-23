@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:harrypotter/Models/charaModel.dart';
-import 'package:harrypotter/screens/AllList.dart/gryffindorsList.dart';
 import 'package:harrypotter/widgets/homeScreen.dart';
 import 'package:flutter/services.dart' as rootBundle;
 
@@ -27,7 +26,6 @@ class myApp extends StatelessWidget {
     final jsonData=await rootBundle.rootBundle.loadString('harry_potter_content.json');
     // convert the data into list
     final list = json.decode(jsonData) as List<dynamic>; 
-    print(list);
     return list.map((e) => characterDataModel.fromJson(e)).toList();
 
   }

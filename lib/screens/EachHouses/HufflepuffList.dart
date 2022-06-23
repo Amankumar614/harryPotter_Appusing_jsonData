@@ -23,9 +23,7 @@ class _HufflepuffState extends State<Hufflepuff> {
       return name.contains(input);
     }).toList();
     setState(() {
-      print("enter in the house");
       filterhouse = suggestion;
-      print("amanaman ${filterhouse[0].name}");
     });
   }
 
@@ -38,6 +36,8 @@ class _HufflepuffState extends State<Hufflepuff> {
 
   @override
   Widget build(BuildContext context) {
+            double height=MediaQuery.of(context).size.height;
+                double width=MediaQuery.of(context).size.width;
     return Scaffold(
         body: Column(
       children: [
@@ -69,7 +69,7 @@ class _HufflepuffState extends State<Hufflepuff> {
           ),
         ),
         Container(
-          height: 200,
+          height: height*0.26,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: filterhouse.length,
@@ -83,8 +83,8 @@ class _HufflepuffState extends State<Hufflepuff> {
                           characterDetails: filterhouse[i],
                         )),
                         child: Container(
-                          height: 270,
-                          width: 130,
+                          height: height*0.29,
+                                    width: width*0.3,
                           decoration: BoxDecoration(
                                                                   color: Colors.grey,
 

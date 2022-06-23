@@ -2,10 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:harrypotter/screens/AllList.dart/HufflepuffList.dart';
-import 'package:harrypotter/screens/AllList.dart/RavenclawList.dart';
-import 'package:harrypotter/screens/AllList.dart/SlytherinList.dart';
-import 'package:harrypotter/screens/AllList.dart/gryffindorsList.dart';
+
 import 'package:flutter/services.dart' as rootBundle;
 import 'package:harrypotter/widgets/jsonHasData.dart';
 import 'package:harrypotter/screens/particuarHouse.dart';
@@ -19,12 +16,12 @@ class home extends StatelessWidget {
         await rootBundle.rootBundle.loadString('assets/person.json');
     // convert the data into list
     final list = json.decode(jsonData) as List<dynamic>;
-    // print(list);
     return list.map((e) => characterDataModel.fromJson(e)).toList();
   }
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -51,7 +48,6 @@ class home extends StatelessWidget {
           future: ReadJsonData(),
           builder: (context, data) {
             if (data.hasError) {
-              print("error $data");
               return Center(
                 child: Text("error ${data.error}"),
               );
@@ -59,7 +55,7 @@ class home extends StatelessWidget {
               return jsonHasData(data: data,);
             } else {
               return Container(
-                  height: 900,
+                  height: height*1,
                   child: Center(
                     child: CircularProgressIndicator(),
                   ));

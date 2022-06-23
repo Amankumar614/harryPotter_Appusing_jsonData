@@ -2,25 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:harrypotter/screens/characterDescription.dart';
 
-import '../Models/charaModel.dart';
+import '../../Models/charaModel.dart';
 
-class allStaff extends StatefulWidget {
-  // const allStudent({ Key? key }) : super(key: key);
+class allHumans extends StatefulWidget {
+  // const allHoumans({ Key? key }) : super(key: key);
   final data;
-  allStaff ({required this.data});
+  final specificData;
+  allHumans({required this.data,required this.specificData});
 
   @override
-  State<allStaff> createState() => AllStaffState();
+  State<allHumans> createState() => _allHumansState();
 }
 
-class AllStaffState extends State<allStaff> {
+class _allHumansState extends State<allHumans> {
+
       late var item = widget.data as List<characterDataModel>;
   late List<dynamic> filterhouse = item;
 
-  searchCharacterByStaff(String query) {
+    searchCharacterByHuman(String query) {
     
       final suggestion = item.where((book) {
-        final name = book.hogwartsStaff.toString();
+        final name = book.species.toString();
         final input = query;
         return name.contains(input);
       }).toList();
@@ -32,26 +34,27 @@ class AllStaffState extends State<allStaff> {
         @override
   void initState() {
     super.initState();
-    searchCharacterByStaff("true");
+    searchCharacterByHuman(widget.specificData.toString());
   }
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
-      appBar: AppBar(title: Text("hogwarts Staff"),),
+      
+      appBar: AppBar(title: Text(widget.specificData),),
       body: GridView.builder(
           gridDelegate:
               SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,childAspectRatio: 1/1.7,mainAxisSpacing: 10,crossAxisSpacing: 5),
           itemCount: filterhouse.length,
           itemBuilder: (context, i) {
-            // print(widget.houseData[i].house);
             return GridTile(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: InkWell(
-                    onTap: () => Get.to(characterDescription(characterDetails: filterhouse[i])),
+                    onTap: ()=>Get.to(characterDescription(characterDetails: filterhouse[i])),
                     child: Container(
-                                      height: 270,
-                                      width: 130,
+                                      
                                       child: Align(alignment:Alignment.bottomCenter,child: Text(filterhouse[i].name,style: TextStyle(color: Colors.white,backgroundColor: Colors.black45),)),
                                       decoration: BoxDecoration(
                                           borderRadius:

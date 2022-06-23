@@ -43,11 +43,11 @@ class stillAliveState extends State<stillAlive> {
       appBar: AppBar(
         title: Text(
           "Alive",
-          style: TextStyle(color: Colors.black),
+          
         ),
         elevation: 0,
-        centerTitle: true,
-        backgroundColor: Colors.white,
+        // centerTitle: true,
+        // backgroundColor: Colors.white,
       ),
       body: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -57,15 +57,14 @@ class stillAliveState extends State<stillAlive> {
             crossAxisSpacing: 5),
         itemCount: filterhouse.length,
         itemBuilder: (context, i) {
-          // print(widget.houseData[i].house);
           return GridTile(
               child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: InkWell(
               onTap: () => Get.to(characterDescription(characterDetails: filterhouse[i])),
               child: Container(
-                height: 270,
-                width: 130,
+                // height: 270,
+                // width: 130,
                 child: Align(
                     alignment: Alignment.bottomCenter,
                     child: Text(

@@ -37,6 +37,9 @@ class _SlytherinState extends State<Slytherin> {
 
   @override
   Widget build(BuildContext context) {
+      double height=MediaQuery.of(context).size.height;
+      double width=MediaQuery.of(context).size.width;
+
     var item = widget.data.data as List<characterDataModel>;
     return  Scaffold(
         body: Column(
@@ -70,7 +73,7 @@ class _SlytherinState extends State<Slytherin> {
                 ),),
             ),
             Container(
-              height: 200,
+              height: height*0.26,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: filterhouse.length,
@@ -84,8 +87,8 @@ class _SlytherinState extends State<Slytherin> {
                                     characterDetails: filterhouse[i],
                                   )),
                                   child: Container(
-                                    height: 270,
-                                    width: 130,
+                                    height: height*0.29,
+                                    width: width*0.3,
                                     decoration: BoxDecoration(
                                                                             color: Colors.grey,
 

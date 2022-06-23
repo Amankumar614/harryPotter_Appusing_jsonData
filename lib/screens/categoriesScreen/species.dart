@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:harrypotter/screens/allHumans.dart';
+import 'package:harrypotter/screens/categoriesScreen/allHumans.dart';
 
 class allSpecies extends StatefulWidget {
   // const allSpecies({ Key? key }) : super(key: key);

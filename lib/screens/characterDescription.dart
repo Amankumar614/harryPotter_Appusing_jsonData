@@ -8,7 +8,8 @@ class characterDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("aman ${characterDetails.yearOfBirth}");
+    double height=MediaQuery.of(context).size.height;
+    double width=MediaQuery.of(context).size.width;
     return Scaffold(
         body: SingleChildScrollView(
       child: SafeArea(
@@ -18,7 +19,7 @@ class characterDescription extends StatelessWidget {
             Column(
               children: [
                 Container(
-                  height: 510,
+                  height: height*0.58,
                   width: double.infinity,
                   color: Colors.amber[300],
                   child: Column(
@@ -30,8 +31,8 @@ class characterDescription extends StatelessWidget {
                           child: Column(
                             children: [
                               Container(
-                                height: 250,
-                                width: 190,
+                                height: height*0.31,
+                                width: width*0.44,
                                 child: Container(
                                   decoration: BoxDecoration(
                                       color: Colors.teal[50],
@@ -43,9 +44,7 @@ class characterDescription extends StatelessWidget {
                                           fit: BoxFit.fill)),
                                 ),
                               ),
-                              // SizedBox(height: 20),
-      
-                              // SizedBox(height: 20),
+                             
                             ],
                           ),
                         ),
@@ -57,7 +56,7 @@ class characterDescription extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             fontSize: 30),
                       ),
-                      SizedBox(height: 20),
+                      SizedBox(height: height*0.02),
                       Container(
                         height: 50,
                         width: double.infinity,
@@ -72,7 +71,7 @@ class characterDescription extends StatelessWidget {
                                   style: TextStyle(color: Colors.white),
                                 ),
                                 SizedBox(
-                                  height: 15,
+                                  height: height*0.015,
                                 ),
                                 Text(
                                   characterDetails.gender,
@@ -91,7 +90,7 @@ class characterDescription extends StatelessWidget {
                                   style: TextStyle(color: Colors.white),
                                 ),
                                 SizedBox(
-                                  height: 15,
+                                  height: height*0.015,
                                 ),
                                 Text(characterDetails.species,
                                     style: TextStyle(
@@ -108,7 +107,7 @@ class characterDescription extends StatelessWidget {
                                   style: TextStyle(color: Colors.white),
                                 ),
                                 SizedBox(
-                                  height: 15,
+                                  height: height*0.015,
                                 ),
                                 Text(
                                     characterDetails.ancestry == ""
@@ -128,7 +127,7 @@ class characterDescription extends StatelessWidget {
                                   style: TextStyle(color: Colors.white),
                                 ),
                                 SizedBox(
-                                  height: 15,
+                                  height: height*0.015,
                                 ),
                                 Text(
                                     characterDetails.dateOfBirth == ""
@@ -147,7 +146,7 @@ class characterDescription extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 40,
+                  height: height*0.05,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -172,11 +171,11 @@ class characterDescription extends StatelessWidget {
               ],
             ),
             Positioned(
-              top: 480,
+              top: 490,
               left: 60,
               child: Align(
         alignment: Alignment.center,
-        child: Container(height: 70,width: 300,decoration: BoxDecoration(color: Colors.brown,
+        child: Container(height: height*0.09,width: width*0.75,decoration: BoxDecoration(color: Colors.brown,
         borderRadius: BorderRadius.circular(10)
         ),child: Center(
           child: Text("Actor name : ${characterDetails.actor}",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.w600),),

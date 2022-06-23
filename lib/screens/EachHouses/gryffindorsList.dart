@@ -4,21 +4,21 @@ import 'package:get/instance_manager.dart';
 import 'package:harrypotter/Models/charaModel.dart';
 import 'package:harrypotter/screens/characterDescription.dart';
 import 'package:harrypotter/screens/particuarHouse.dart';
+import 'package:shimmer/shimmer.dart';
 
-class Ravenclaw extends StatefulWidget {
+class gryffindors extends StatefulWidget {
   final data;
-  Ravenclaw({this.data});
+  gryffindors({this.data});
 
   @override
-  State<Ravenclaw> createState() => _RavenclawState();
+  State<gryffindors> createState() => _gryffindorsState();
 }
 
-class _RavenclawState extends State<Ravenclaw> {
-
+class _gryffindorsState extends State<gryffindors> {
   late var item = widget.data.data as List<characterDataModel>;
   late List<dynamic> filterhouse = item;
 
-  searchCharacterByRavenclaw(String query) {
+  searchCharacterByGryffindor(String query) {
     
       final suggestion = item.where((book) {
         final name = book.house.toString();
@@ -33,16 +33,15 @@ class _RavenclawState extends State<Ravenclaw> {
     @override
   void initState() {
     super.initState();
-    searchCharacterByRavenclaw("Ravenclaw");
+    searchCharacterByGryffindor("Gryffindor");
   }
-
-
-
 
   @override
   Widget build(BuildContext context) {
-    // var item = widget.data.data as List<characterDataModel>;
-    
+        double height=MediaQuery.of(context).size.height;
+                double width=MediaQuery.of(context).size.width;
+
+
 
     return Scaffold(
         body: Column(
@@ -50,19 +49,17 @@ class _RavenclawState extends State<Ravenclaw> {
           
             Padding(
               padding: const EdgeInsets.only(left:8.0,right: 8.0),
-              child: Container(
-                height: 50,
-                child: Row(
+              child: Container(child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Ravenclaw",
+                      "Gryffindors",
                       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
                     TextButton(
                       onPressed: () => Get.to(particularHouse(
                         houseData: filterhouse,
-                        houseName: "Ravenclaw",
+                        houseName: "Gryffindors",
                       )),
                       child: Text(
                         "See All",
@@ -76,7 +73,7 @@ class _RavenclawState extends State<Ravenclaw> {
                 ),),
             ),
             Container(
-              height: 200,
+              height: height*0.26,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: filterhouse.length,
@@ -90,11 +87,10 @@ class _RavenclawState extends State<Ravenclaw> {
                                     characterDetails: filterhouse[i],
                                   )),
                                   child: Container(
-                                    height: 270,
-                                    width: 130,
+                                    height: height*0.29,
+                                    width: width*0.3,
                                     decoration: BoxDecoration(
-                                                                            color: Colors.grey,
-
+                                      color: Colors.grey,
                                         borderRadius:
                                             BorderRadius.all(Radius.circular(12)),
                                         image: DecorationImage(
